@@ -18,7 +18,7 @@ def create_account(request):
     form = AccountForm(data = request.POST or None) # Retrieve the Account form
     # check if request method is POST
     if request.method == 'POST':
-        if form.is_valid()  # check tp see if the submitted form is valid and if so, saves the form
+        if form.is_valid():  # check tp see if the submitted form is valid and if so, saves the form
             form.save()  #saves new account
             return redirect('index') #Returns user back to the home page
     content = {'form': form} #saves content to the template as a dictionary

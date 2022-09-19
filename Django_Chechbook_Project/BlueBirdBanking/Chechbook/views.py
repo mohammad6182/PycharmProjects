@@ -11,7 +11,7 @@ def home(request):
         return balance(request, pk) #call balance function to render that accounts balance sheet
     content = {'form' : form} # pass content to the template in a dictionary
     # Adds content of form to page
-    return render(request, 'chechbook/index.html', content)
+    return render(request, 'checkbook/index.html', content)
 
 # this function will render the Create New account page when requested
 def create_account(request):
@@ -23,7 +23,7 @@ def create_account(request):
             return redirect('index') #Returns user back to the home page
     content = {'form': form} #saves content to the template as a dictionary
     # adds content of form to page
-    return render(request, 'chechbook/CreateNewAccount.html', content)
+    return render(request, 'checkbook/CreateNewAccount.html', content)
 
 
 # This function will render the Balance page when requested
@@ -42,7 +42,7 @@ def balance(request):
 
         # pass acount , account total balance, and transaction information to the template
         content = {'account' : account, 'table_contents': table_contents, 'balance': current_total}
-    return render(request, 'chechbook/BalanceSheet.hrml', content)
+    return render(request, 'checkbook/BalanceSheet.hrml', content)
 
 # This function will render the Transaction Page when requested
 
@@ -57,4 +57,4 @@ def transaction(request):
     # passcontent to the template in a dictionary
     content = {'form' : form}
     # Adds content of form to the page
-    return render(request, 'chechbook/AddTransaction.html', content)
+    return render(request, 'checkbook/AddTransaction.html', content)

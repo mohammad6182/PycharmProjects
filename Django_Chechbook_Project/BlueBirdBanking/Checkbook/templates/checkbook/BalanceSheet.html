@@ -10,6 +10,7 @@
 					<br><br>
 					<label>Current Balance</label>
 					<input id="balance" type="text" name="currentBalance" value="{{ balance }}" readonly>
+					<button type="button"><a href="{% url 'trnasaction' %}">Add Transaction</a> </button>
 				</form>
 				<br><br>
 			</div>
@@ -24,6 +25,7 @@
 					<th>Amount</th>
 					<th>Balance</th>
 				</tr>
+				{% for key, total in table_contents.item %}
 				<tr>
 					<td class="center">{{ key.data }}</td>
 					<td class="center">{{ key.data }}</td>

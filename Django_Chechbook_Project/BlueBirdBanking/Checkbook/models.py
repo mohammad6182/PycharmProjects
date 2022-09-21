@@ -4,7 +4,7 @@ from django.db import models
 class Account(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    initial_deposit = models.DecimalField(max_digits= 15, decimal_places=2)
+    initial_deposit = models.DecimalField(max_digits=15, decimal_places=2)
 
     # define the model manager for accounts
     Accounts = models.Manager()
@@ -15,7 +15,7 @@ class Account(models.Model):
 
 
     # choices for a transaction
-    TransactionTypes = [('Deposit', 'Deposit'), ('Withdrawal', 'Witdrawal')]
+TransactionTypes = [('Deposit', 'Deposit'), ('Withdrawal', 'Withdrawal')]
 
 
     # Creates the transaction Model
@@ -23,10 +23,11 @@ class Transaction(models.Model):
     date = models.DateField()
     type = models.CharField(max_length=10, choices=TransactionTypes)
     amount = models.DecimalField(max_digits=15, decimal_places=2)
-    deccription = models.ForeignKey(Account, on_delete=models.CASCADE)
+    description = models.CharField(max_length=100)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     # defines the model manager for Transaction
-    Transactions = models.Model()
+    Transactions = models.Manager()
 
 
 

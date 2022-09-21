@@ -15,7 +15,7 @@ def home(request):
 
 # this function will render the Create New account page when requested
 def create_account(request):
-    form = AccountForm(data = request.POST or None) # Retrieve the Account form
+    form = AccountForm(data=request.POST or None) # Retrieve the Account form
     # check if request method is POST
     if request.method == 'POST':
         if form.is_valid():  # check tp see if the submitted form is valid and if so, saves the form
@@ -27,12 +27,12 @@ def create_account(request):
 
 
 # This function will render the Balance page when requested
-def balance(request):
-    account = get_object_or_404(Account, pk= pk) # retrive the requested account using its primary key
+def balance(request, pk):
+    account = get_object_or_404(Account, pk=pk) # retrive the requested account using its primary key
     transactions = Transaction.Transactions.filter(account=pk) #retrive all of that accounts transactions
     current_total = account.initial_deposit # creates account total variable, starting with initial deposit value
     table_contents = {} # creates a dictionary into which transaction information will be placed
-    for i in transactions:
+    for t in transactions:
         if t.type == 'Deposit':
             current_total += t.amount #if deposit add amount to the balance
             table_contents.update({t: current_total})
@@ -41,8 +41,8 @@ def balance(request):
             table_contents.update({t: current_total}) # add transaction and total to the dictionary
 
         # pass acount , account total balance, and transaction information to the template
-        content = {'account' : account, 'table_contents': table_contents, 'balance': current_total}
-    return render(request, 'checkbook/BalanceSheet.hrml', content)
+        content = {'account': account, 'table_contents': table_contents, 'balance': current_total}
+    return render(request, 'checkbook/BalanceSheet.html', content)
 
 # This function will render the Transaction Page when requested
 
@@ -51,10 +51,10 @@ def transaction(request):
     # checks if request method is POST
     if request.method == 'POST':
         if form.is_valid(): #check to see if the submitted form is valid and if so, will save it
-            pk = request.POST['account'] # retrive which account the transaction was for
+            pk = request.POST['account']# retrive which account the transaction was for
             form.save() # saves the Transaction form
-            return balance('request, pk') #renders balance of the accounts balance sheet
+            return balance(request, pk) #renders balance of the accounts balance sheet
     # passcontent to the template in a dictionary
-    content = {'form' : form}
+    content = {'form': form}
     # Adds content of form to the page
     return render(request, 'checkbook/AddTransaction.html', content)

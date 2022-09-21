@@ -11,6 +11,6 @@ class AccountForm(ModelForm):
 
 # Creates Transaction Form based on Transaction Model
 class TransactionForm(ModelForm):
-    class Mate:
+    class Meta:
         model = Transaction
         fields = '__all__'

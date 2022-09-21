@@ -5,7 +5,7 @@
 	<div id="account-form">
 		<form method="POST">
 			{% csrf_token %}
-			{{forms.as_p}}
+			{{form.as_p}}
 			<button id="new-account-button" type="submit" name="Save_Account">Create Account</button>
 		</form>
 		<br>

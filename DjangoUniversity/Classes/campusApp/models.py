@@ -16,7 +16,7 @@ class UniversityCampus(models.Model):
 
     def __str__(self):
 
-        display_campus = '{0.title}: {0.campus_name}'
+        display_campus = '{0.campus_state}: {0.campus_name}'
         return display_campus.format(self)
 
 
